@@ -43,6 +43,8 @@ INSTALLED_APPS = [
 ]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = 'login'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -57,7 +59,7 @@ ROOT_URLCONF = 'mysite.urls'
 def show_toolbar(request):
     return True
 SHOW_TOOLBAR_CALLBACK = show_toolbar
-
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 30
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
