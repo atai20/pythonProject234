@@ -54,6 +54,9 @@ def simple_upload(request):
         fs = FileSystemStorage()
         filename = fs.save(myfile.name, myfile)
         uploaded_file_url = fs.url(filename)
+        p = Profile.objects.get(id=1)
+        p.avatar = filename
+        p.save()
         return render(request, 'core/simple_upload.html', {
             'uploaded_file_url': uploaded_file_url
         })
@@ -86,7 +89,6 @@ class RegisterView(FormView):
 
         if form.is_valid():
             form.save()
-
             username = form.cleaned_data.get('username')
 
             return redirect(to='/')
