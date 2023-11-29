@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-
-
+{% include 'navbar.html' %}
+{% block content %}
 <title>bs4 beta user profile info with posts - Bootdey.com</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
@@ -329,9 +329,9 @@ body.menubar-top .profile-wrapper {
 <div class="profile-wrapper">
 <div class="profile-section-user">
 <div class="profile-cover-img"><img src="https://bootdey.com/img/Content/flores-amarillas-wallpaper.jpeg" alt></div>
-<div class="profile-info-brief p-3"><img class="img-fluid user-profile-avatar" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt>
+<div class="profile-info-brief p-3"><img class="img-fluid user-profile-avatar" src="{{ image.avatar.url }}" alt>
 <div class="text-center">
-<h5 class="text-uppercase mb-4">John Doe</h5>
+<h5 class="text-uppercase mb-4">{{output}}</h5>
 <p class="text-muted fz-base">I'm John Doe a web developer and software engineer. I studied computer science and software engineering.</p>
 </div>
 </div>
@@ -415,7 +415,7 @@ body.menubar-top .profile-wrapper {
 <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#profile-overview" role="tab">Timeline</a></li>
 </ul>
 
-
+<form>
 <div class="tab-content profile-tabs-content">
 <div class="tab-pane active" id="profile-overview" role="tabpanel">
 <div class="post-editor">
@@ -424,6 +424,7 @@ body.menubar-top .profile-wrapper {
 <button class="btn btn-success px-4 py-1">Post</button>
 </div>
 </div>
+</form>
 
 <div class="stream-posts">
 <div class="stream-post">
@@ -436,7 +437,22 @@ body.menubar-top .profile-wrapper {
 </div>
 
 </div>
+{% if output %}
 
+  {% for post in output %}
+    <div class="stream-post">
+<div class="sp-author">
+<a href="#" class="sp-author-avatar"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt></a>
+<h6 class="sp-author-name"><a href="#">{{post.user.username}}</a></h6></div>
+<div class="sp-content">
+<div class="sp-info">posted 1h ago</div>
+<p class="sp-paragraph mb-0">{{post.title}}</div>
+
+</div>
+
+    {% endfor %}
+
+    {% endif %}
 <div class="stream-post">
 <div class="sp-author">
 <a href="#" class="sp-author-avatar"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt></a>
@@ -498,3 +514,5 @@ body.menubar-top .profile-wrapper {
 </script>
 </body>
 </html>
+
+{% endblock %}

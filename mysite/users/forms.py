@@ -6,34 +6,33 @@ class RegisterForm(forms.ModelForm):
                                  required=True,
                                  widget=forms.TextInput(attrs={'placeholder': 'First Name',
                                                                'class': 'form-control',
+                                                               'id':'name'
                                                                }))
     last_name = forms.CharField(max_length=100,
                                 required=True,
                                 widget=forms.TextInput(attrs={'placeholder': 'Last Name',
                                                               'class': 'form-control',
+                                                              'id':'l_name'
                                                               }))
-    username = forms.CharField(max_length=100,
-                               required=True,
-                               widget=forms.TextInput(attrs={'placeholder': 'Username',
-                                                             'class': 'form-control',
-                                                             }))
+
     email = forms.EmailField(required=True,
                              widget=forms.TextInput(attrs={'placeholder': 'Email',
                                                            'class': 'form-control',
+                                                           'id':'email'
                                                            }))
     password1 = forms.CharField(max_length=50,
                                 required=True,
                                 widget=forms.PasswordInput(attrs={'placeholder': 'Password',
                                                                   'class': 'form-control',
                                                                   'data-toggle': 'password',
-                                                                  'id': 'password',
+                                                                  'id': 'pass',
                                                                   }))
     password2 = forms.CharField(max_length=50,
                                 required=True,
                                 widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password',
                                                                   'class': 'form-control',
                                                                   'data-toggle': 'password',
-                                                                  'id': 'password',
+                                                                  'id': 're-pass',
                                                                   }))
     class Meta:
         model = User
@@ -41,6 +40,7 @@ class RegisterForm(forms.ModelForm):
 
 
 class LoginForm(AuthenticationForm):
+
     username = forms.CharField(max_length=100,
                                required=True,
                                widget=forms.TextInput(attrs={'placeholder': 'Username',

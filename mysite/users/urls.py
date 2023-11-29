@@ -12,9 +12,12 @@ app_name = "core"
 urlpatterns = [
     path('login/', CustomLoginView.as_view(template_name='core/login.html',
                                            authentication_form=LoginForm), name='login'),
+    path("test/", views.test, name="chat"),
+
     path('logout/', auth_views.LogoutView.as_view(template_name='core/logout.html'), name='logout'),
     path('upload/', views.simple_upload, name='upload'),
-
+    path("chat/", views.ChatView.as_view(), name="chat"),
+    path("forum/", views.forum, name="forum"),
     path('register/', RegisterView.as_view(), name='register-view'),
     path('dashboard/', DashboardView.as_view(), name='dashboard-view'),
 

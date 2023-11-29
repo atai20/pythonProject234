@@ -1,0 +1,8 @@
+{% include 'navbar.html' %}
+<form method="POST" class="register-form" id="register-form">
+{% csrf_token %}
+
+{{ form }}
+<input type="submit" name="register" value="Register" />
+
+</form>
